@@ -27,9 +27,16 @@ int extended_euclid(int m, int b){
     }
 }
 
-long long crypt(long text, long prime, int n){
-    long long power = pow(text, prime);
-    return power % n;
+int crypt(int base, int exp, int mod) {
+    int result = 1;
+    while (exp > 0) {
+        if (exp % 2 == 1) {
+            result = (result * base) % mod;
+        }
+        base = (base * base) % mod;
+        exp /= 2;
+    }
+    return result;
 }
 
 void main(){
